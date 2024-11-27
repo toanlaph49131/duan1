@@ -6,12 +6,13 @@ include "../model/pdo.php";
 include "../model/sanpham.php";
 include "../model/danhmuc.php";
 include "../model/taikhoan.php";
+include "../model/donhang.php";
 include "../global.php";
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
             //quan ly danh muc
-        case 'add_dm': {
+        case "add_dm": {
                 if (isset($_POST['submit']) && ($_POST['submit'])) {
                     $name = $_POST['name'];
                     $img = null;
@@ -31,33 +32,25 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "./danhmuc/add_dm.php";
                 break;
             }
-        case 'list_dm': {
+        case "list_dm": {
                 $list_dm = loadAll_danhmuc();
-                include "danhmuc/list_dm.php";
+                include "./danhmuc/list_dm.php";
                 break;
             }
-        case 'delete_dm': {
-                if (isset($_GET['id']) && ($_GET['id']) > 0) {
-                    $loadone_dm = loadAll_danhmuc("", $_GET['id']);
-                    delete_dm($_GET['id']);
-                    echo "<script>alert('Xóa danh mục thành công');</script>";
-                }
-                $list_dm = loadAll_danhmuc();
-                include "danhmuc/list_dm.php";
-                break;
-            }
-        case 'update_dm': {
+        case "delete_dm": {
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $loadone_dm = loadAll_danhmuc("", $_GET['id']);
-                    if (isset($_POST['submit']) && ($_POST['submit'])) {
-                        $name = $_POST['name'];
-                        $listone_dm = loadAll_danhmuc($name, 0);
-                        update_dm($_GET['id'], $name, $_FILES['img']['name']);
-                        $thongbao = "Cap nhap danh mục thanh cong";
+                    if (isset($loadone_dm[0]['img'])) {
+                        if ($loadone_dm[0]['img'] != "") {
+                            $link = "../uploads/img_dm/" . $loadone_dm[0]['img'];
+                            unlink("$link");
+                        }
                     }
-                    include "danhmuc/update_dm.php";
-                    break;
+                    delete_dm($_GET['id']);
                 }
+                $list_dm = loadAll_danhmuc();
+                include "./danhmuc/list_dm.php";
+                break;
             }
         case "add_sp": {
                 if (isset($_POST['submit']) && ($_POST['submit'])) {
@@ -188,6 +181,46 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 include './taikhoan/update_tk.php';
                 break;
             }
+               //quan ly don hang
+        case "list_donhang": {
+            $list_donhang = loadall_donhang();
+            include "./donhang/list_donhang.php";
+            break;
+        }
+    case "update_donhang": {
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $loadone_dh = loadall_donhang($_GET['id']);
+                $loadone_ctdh = loadone_chitietdonhang($_GET['id']);
+                if (isset($_POST['submit']) && ($_POST['submit'])) {
+                    $name = $_POST['name'];
+                    $tel = $_POST['tel'];
+                    $address = $_POST['address'];
+                    if (isset($_POST['trangthai'])) {
+                        $trangthai = $_POST['trangthai'];
+                    } else {
+                        $trangthai = 4;
+                    }
+
+
+                    if (isset($_POST['ghichu']) && $_POST['ghichu']  != "") {
+                        $ghichu = $_POST['ghichu'];
+                    } else {
+                        $ghichu = "";
+                    }
+                    update_donhang($_GET['id'], $name, $tel, $address, $ghichu, $trangthai);
+                    header('location: index.php?act=list_donhang');
+                }
+            }
+            include './donhang/update_donhang.php';
+            break;
+        }
+
+        //quan ly ct don hang
+    case "list_ctdh": {
+            $loadall_ctdh = loadall_chitietdonhang();
+            include "./donhang/list_ctdh.php";
+            break;
+        }
     }
 } else {
     include "home.php";
