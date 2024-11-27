@@ -5,59 +5,60 @@ include "header.php";
 include "../model/pdo.php";
 include "../model/sanpham.php";
 include "../model/danhmuc.php";
+include "../model/taikhoan.php";
 include "../global.php";
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
-         //quan ly danh muc
-         case 'add_dm': {
-            if (isset($_POST['submit']) && ($_POST['submit'])) {
-                $name = $_POST['name'];
-                $img = null;
-                $listone_dm = loadAll_danhmuc($name, 0);
-                if (is_array($listone_dm) && count($listone_dm) > 0) {
-                    $err = "Tên danh mục đã tồn tại";
-                } else {
-
-                    if ($_FILES['img']['name'] != "") {
-                        $img = time() . "_" . $_FILES['img']['name'];
-                        move_uploaded_file($_FILES['img']['tmp_name'], "../uploads/img_dm/$img");
-                    }
-                    insert_dm($name, $img);
-                    $thongbao = "Thêm danh mục thành công";
-                }
-            }
-            include "./danhmuc/add_dm.php";
-            break;
-        }
-    case 'list_dm': {
-            $list_dm = loadAll_danhmuc();
-            include "danhmuc/list_dm.php";
-            break;
-        }
-    case 'delete_dm': {
-            if (isset($_GET['id']) && ($_GET['id']) > 0) {
-                $loadone_dm = loadAll_danhmuc("", $_GET['id']);
-                delete_dm($_GET['id']);
-                echo "<script>alert('Xóa danh mục thành công');</script>";
-            }
-            $list_dm = loadAll_danhmuc();
-            include "danhmuc/list_dm.php";
-            break;
-        }
-    case 'update_dm': {
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                $loadone_dm = loadAll_danhmuc("", $_GET['id']);
+            //quan ly danh muc
+        case 'add_dm': {
                 if (isset($_POST['submit']) && ($_POST['submit'])) {
                     $name = $_POST['name'];
+                    $img = null;
                     $listone_dm = loadAll_danhmuc($name, 0);
-                    update_dm($_GET['id'], $name, $_FILES['img']['name']);
-                    $thongbao = "Cap nhap danh mục thanh cong";
+                    if (is_array($listone_dm) && count($listone_dm) > 0) {
+                        $err = "Tên danh mục đã tồn tại";
+                    } else {
+
+                        if ($_FILES['img']['name'] != "") {
+                            $img = time() . "_" . $_FILES['img']['name'];
+                            move_uploaded_file($_FILES['img']['tmp_name'], "../uploads/img_dm/$img");
+                        }
+                        insert_dm($name, $img);
+                        $thongbao = "Thêm danh mục thành công";
+                    }
                 }
-                include "danhmuc/update_dm.php";
+                include "./danhmuc/add_dm.php";
                 break;
             }
-        }
+        case 'list_dm': {
+                $list_dm = loadAll_danhmuc();
+                include "danhmuc/list_dm.php";
+                break;
+            }
+        case 'delete_dm': {
+                if (isset($_GET['id']) && ($_GET['id']) > 0) {
+                    $loadone_dm = loadAll_danhmuc("", $_GET['id']);
+                    delete_dm($_GET['id']);
+                    echo "<script>alert('Xóa danh mục thành công');</script>";
+                }
+                $list_dm = loadAll_danhmuc();
+                include "danhmuc/list_dm.php";
+                break;
+            }
+        case 'update_dm': {
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $loadone_dm = loadAll_danhmuc("", $_GET['id']);
+                    if (isset($_POST['submit']) && ($_POST['submit'])) {
+                        $name = $_POST['name'];
+                        $listone_dm = loadAll_danhmuc($name, 0);
+                        update_dm($_GET['id'], $name, $_FILES['img']['name']);
+                        $thongbao = "Cap nhap danh mục thanh cong";
+                    }
+                    include "danhmuc/update_dm.php";
+                    break;
+                }
+            }
         case "add_sp": {
                 if (isset($_POST['submit']) && ($_POST['submit'])) {
                     $name = $_POST['name'];
@@ -122,13 +123,13 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "./sanpham/list_sp.php";
                 break;
             }
-            case "trash" :
-                if(isset($_GET['id']) && $_GET['id'] > 0){
-                    khoiphuc_sp($_GET['id']);
-                    header('location: index.php?act=trash');
-                }
-                include "./sanpham/trash.php";
-                break;
+        case "trash":
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                khoiphuc_sp($_GET['id']);
+                header('location: index.php?act=trash');
+            }
+            include "./sanpham/trash.php";
+            break;
         case "update_sp": {
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $loadone_sp = loadAll_sanpham("", $_GET['id']);
@@ -168,6 +169,23 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                     }
                 }
                 include './sanpham/update_sp.php';
+                break;
+            }
+        case "list_tk": {
+                $list_tk = loadall_taikhoan();
+                include "./taikhoan/list_tk.php";
+                break;
+            }
+        case "update_tk": {
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $loadone_tk = loadall_taikhoan("", $_GET['id']);
+                    if (isset($_POST['submit']) && ($_POST['submit'])) {
+                        $role = $_POST['role'];
+                        update_role($_GET['id'], $role);
+                        header('location: index.php?act=list_tk');
+                    }
+                }
+                include './taikhoan/update_tk.php';
                 break;
             }
     }
