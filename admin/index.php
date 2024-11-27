@@ -3,11 +3,18 @@ ob_start();
 session_start();
 include "header.php";
 include "../model/pdo.php";
-include "../model/sanpham.php";
 include "../model/danhmuc.php";
+include "../model/sanpham.php";
 include "../model/taikhoan.php";
 include "../model/donhang.php";
+include "../model/thongke.php";
+include "../model/binhluan.php";
 include "../global.php";
+$thong_ke_doanh_thu = thong_ke_doanh_thu();
+$thong_ke = thong_ke();
+$count_sp = count(loadAll_sanpham());
+$thong_ke_doanh_thu_thang = thong_ke_doanh_thu_thanh();
+$loadAll_sanpham_trang_thai_1 = loadAll_sanpham_trang_thai_1();
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
@@ -52,7 +59,27 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "./danhmuc/list_dm.php";
                 break;
             }
+        case 'update_dm':
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $loadone_dm = loadAll_danhmuc("", $_GET['id']);
+                if (isset($_POST['submit']) && ($_POST['submit'])) {
+                    $name = $_POST['name'];
+                    $img = null;
+                    if (($_FILES['img']['name'] != $loadone_dm[0]['img']) && ($_FILES['img']['name'] != "")) {
+                        $img = time() . "_" . $_FILES['img']['name'];
+                        move_uploaded_file($_FILES['img']['tmp_name'], "../uploads/img_dm/$img");
+                        unlink("../uploads/img_dm/" . $loadone_dm[0]['img']);
+                    }
+                    update_dm($_GET['id'], $name, $img);
+                    header('location: index.php?act=list_dm');
+                }
+            }
+            $list_dm = loadAll_danhmuc();
+            include './danhmuc/update_dm.php';
+            break;
+            //quan ly san pham
         case "add_sp": {
+                $list_dm = loadAll_danhmuc();
                 if (isset($_POST['submit']) && ($_POST['submit'])) {
                     $name = $_POST['name'];
                     $iddm = $_POST['iddm'];
@@ -116,15 +143,16 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "./sanpham/list_sp.php";
                 break;
             }
-        case "trash":
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                khoiphuc_sp($_GET['id']);
-                header('location: index.php?act=trash');
-            }
-            include "./sanpham/trash.php";
-            break;
+            case "trash" :
+                if(isset($_GET['id']) && $_GET['id'] > 0){
+                    khoiphuc_sp($_GET['id']);
+                    header('location: index.php?act=trash');
+                }
+                include "./sanpham/trash.php";
+                break;
         case "update_sp": {
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $list_dm = loadAll_danhmuc();
                     $loadone_sp = loadAll_sanpham("", $_GET['id']);
                     if (isset($_POST['submit']) && ($_POST['submit'])) {
                         $name = $_POST['name'];
@@ -161,9 +189,11 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                         header('location: index.php?act=list_sp');
                     }
                 }
+                $list_dm = loadAll_danhmuc();
                 include './sanpham/update_sp.php';
                 break;
             }
+            //quan ly tai khoan
         case "list_tk": {
                 $list_tk = loadall_taikhoan();
                 include "./taikhoan/list_tk.php";
@@ -181,6 +211,8 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 include './taikhoan/update_tk.php';
                 break;
             }
+
+            //quan ly binh luan
         case "list_binhluan": {
                 $load_bl_sp_admin = load_bl_sp_admin();
                 include "./binhluan/list_binhluan.php";
@@ -227,12 +259,20 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 include './donhang/update_donhang.php';
                 break;
             }
+
             //quan ly ct don hang
         case "list_ctdh": {
                 $loadall_ctdh = loadall_chitietdonhang();
                 include "./donhang/list_ctdh.php";
                 break;
             }
+        case 'dangxuat':
+            session_unset();
+            header('location: ../index.php');
+            break;
+
+
+            //thong ke
         case "thongke": {
                 include "./thongke/thongke.php";
                 break;

@@ -10,8 +10,22 @@ if (isset($_SESSION['iduser'])) {
 }
 include 'view/header.php';
 include 'model/cart.php';
+include 'model/validate_form.php';
+include 'model/validate_pass.php';
 include 'model/donhang.php';
 include 'model/thongke.php';
+
+// if (isset($_SESSION['user'])) {
+//     header('Location:view/taikhoan/dangnhap.php');
+// }
+if (isset($_SESSION['role']) && $_SESSION['role'] === 1) {
+    header('location:admin/index.php');
+}
+$loadstar = loadstar();
+$load_sp_luot_xem = load_sp_luotxem();
+// $list_sp_home = loadAll_sanpham();
+$list_dm = loadAll_danhmuc();
+$load_sp_star = load_sp_star();
 
 if (isset($_GET['act']) && $_GET['act'] != '') {
     $act = $_GET['act'];
