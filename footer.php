@@ -2,7 +2,7 @@
           <footer class="sticky-footer bg-white">
               <div class="container my-auto">
                   <div class="copyright text-center my-auto">
-                      <span>Copyright &copy; Trần Đình Anh Quân - Lê Anh Toản</span>
+                      <span>Copyright &copy; Nguyễn Congo Phước</span>
                   </div>
               </div>
           </footer>

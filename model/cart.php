@@ -15,7 +15,6 @@ function count_cart($iduser)
     $sql = "SELECT * FROM cart WHERE iduser = '$iduser'";
     return pdo_query($sql);
 }
-
 function delete_cart($id)
 {
     $sql = "DELETE FROM cart WHERE id = '$id'";
