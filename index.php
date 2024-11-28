@@ -15,7 +15,7 @@ include 'model/validate_pass.php';
 include 'model/binhluan.php';
 include 'model/donhang.php';
 include 'model/thongke.php';
-include 'model/status.php';
+
 // if (isset($_SESSION['user'])) {
 //     header('Location:view/taikhoan/dangnhap.php');
 // }
