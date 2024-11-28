@@ -72,6 +72,6 @@ function check_email($email)
 function update_mk_email($email, $pass)
 {
     // Đảm bảo email và pass được đặt trong dấu nháy đơn
-    $sql = "UPDATE taikhoan SET pass = '" . md5($pass) . "' WHERE email = '" . $email . "'";
+    $sql = "UPDATE taikhoan SET pass = '" . $pass . "' WHERE email = '" . $email . "'";
     pdo_execute($sql);
 }
