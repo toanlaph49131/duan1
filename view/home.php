@@ -29,11 +29,11 @@
 </section>
 <aside>
     <div class="right-now">
-        <img width="680" src="image/banner-bst.png" alt="" />
+        <img width="680" src="image/banner-nho.jpg" alt="" />
         <button>Right now</button>
     </div>
     <div class="right-now">
-        <img width="680" src="image/banner-bst.png" alt="" />
+        <img width="680" src="image/banner-nho.jpg" alt="" />
         <button>Right now</button>
     </div>
 </aside>
@@ -63,12 +63,6 @@
                             <i class="fa-solid fa-star"></i> <span>(<?= number_format($avg_star, 1) ?>)</span> <br />
                             <!-- <span>Đã mua 4.5k</span> -->
                         </p>
-
-                        <form action="?act=addtocart&idsp=<?= $id ?>" method="post">
-                            <p>
-                                <button type="submit" name="btn" value="btn"><i class="fa-solid fa-cart-plus"></i></button>
-                            </p>
-                        </form>
 
                     </div>
                 </div>
@@ -104,12 +98,6 @@
                         <i class="fa-solid fa-star"></i> <span>(<?= number_format($avg_star, 1) ?>)</span> <br />
                             <!-- <span>Đã mua 4.5k</span> -->
                         </p>
-
-                        <form action="?act=addtocart&idsp=<?= $id ?>" method="post">
-                            <p>
-                                <button type="submit" name="btn" value="btn"><i class="fa-solid fa-cart-plus"></i></button>
-                            </p>
-                        </form>
 
                     </div>
                 </div>
