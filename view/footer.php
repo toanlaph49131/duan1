@@ -36,7 +36,7 @@
   </div>
   <hr class="hr-footer" />
   <h5>
-    © Dự án được thực hiện bởi Nguyễn Công Phước
+    © Dự án được thực hiện bởi 
   </h5>
 </footer>
 </div>
