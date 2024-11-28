@@ -251,9 +251,34 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
                     echo "<script>alert('Đổi mật khẩu thành công!')</script>";
                 }
             }
-
-            $dh = load_donhang_user($_SESSION['iduser'], "0");
+            $dh = load_donhang_user($_SESSION['iduser']);
             include 'view/taikhoan/mytaikhoan.php';
+            break;
+            case 'quenmk':
+                include 'view/taikhoan/quenmk.php';
+                if (isset($_POST['guiemail']) && $_POST['guiemail']) {
+                 //nếu thấy tồn tại email cho phép cập nhật mật khẩu mới và xóa mật khẩu cũ
+                    $email = $_POST['email'];
+                    if(checkemail($email)){
+                        header('location:view/taikhoan/reset_pass.php');
+                    }
+
+                }
+                break;
+            case 'reset_pass':
+                if(isset($_SESSION['submit']) && $_SESSION['submit']){
+                    $pass = $_POST['pass'];
+                    $confim = $_POST['confim'];
+                    if($pass == $confim){
+                        update_mk_email($_SESSION['iduser'], $pass);
+                        echo "<script>alert('Đổi mật khẩu thành công!')</script>";
+                        header('location:index.php?act=dangnhap');
+                    }
+                }
+                header('location:index.php?act=reset_pass');
+                break;
+
+                
     }
 } else {
     include 'view/home.php';

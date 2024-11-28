@@ -63,3 +63,14 @@ function selectone_tk($id)
     $sql = "SELECT * FROM taikhoan WHERE id=" . $id;
     return pdo_query_one($sql);
 }
+function check_email($email)
+{
+    $sql = "SELECT * FROM taikhoan WHERE  email='" . $email. "'";
+    $sp = pdo_query_one($sql);
+    return $sp;
+}
+function update_mk_email($id, $pass)
+{
+    $sql = "UPDATE taikhoan SET pass='" . $pass . "' WHERE id=" . $id;
+    pdo_execute($sql);
+}
