@@ -7,9 +7,10 @@ function loadall_donhang($iddh = 0)
     }
     return pdo_query($sql);
 }
-function load_donhang_user($iduser)
+function load_donhang_user($iduser,$status = "0") 
 {
-    $sql = "select * from donhang where id_user = $iduser";
+    
+    $sql = "SELECT * FROM donhang WHERE id_user = $iduser";
     return pdo_query($sql);
 }
 

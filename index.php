@@ -252,9 +252,8 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
                 }
             }
 
-            $dh = load_donhang_user($_SESSION['iduser']);
+            $dh = load_donhang_user($_SESSION['iduser'], "0");
             include 'view/taikhoan/mytaikhoan.php';
-            break;
     }
 } else {
     include 'view/home.php';
