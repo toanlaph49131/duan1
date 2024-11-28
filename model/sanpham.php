@@ -157,3 +157,8 @@ LIMIT 0,5
     ";
     return pdo_query($sql);
 }
+function list_ton_kho()
+{
+    $sql = "select id, name, soluong from sanpham ";
+    return pdo_query($sql);
+}
