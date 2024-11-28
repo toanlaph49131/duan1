@@ -79,3 +79,4 @@ function load_sp_chua_danh_gia($iduser,$iddh)
 ";
     return pdo_query($sql);
 }
+
