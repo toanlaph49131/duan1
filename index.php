@@ -15,7 +15,7 @@ include 'model/validate_pass.php';
 include 'model/binhluan.php';
 include 'model/donhang.php';
 include 'model/thongke.php';
-
+include 'model/status.php';
 // if (isset($_SESSION['user'])) {
 //     header('Location:view/taikhoan/dangnhap.php');
 // }
@@ -252,9 +252,8 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
                 }
             }
 
-            $dh = load_donhang_user($_SESSION['iduser']);
+            $dh = load_donhang_user($_SESSION['iduser'], "0");
             include 'view/taikhoan/mytaikhoan.php';
-            break;
     }
 } else {
     include 'view/home.php';
