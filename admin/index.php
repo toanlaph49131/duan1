@@ -277,6 +277,10 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "./thongke/thongke.php";
                 break;
             }
+        case "list_khohang":
+            $list_khohang = list_ton_kho();
+            include "./khohang/list_khohang.php";
+            break;
     }
 } else {
     include "home.php";
