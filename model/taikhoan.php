@@ -69,8 +69,9 @@ function check_email($email)
     $sp = pdo_query_one($sql);
     return $sp;
 }
-function update_mk_email($id, $pass)
+function update_mk_email($email, $pass)
 {
-    $sql = "UPDATE taikhoan SET pass='" . $pass . "' WHERE id=" . $id;
+    // Đảm bảo email và pass được đặt trong dấu nháy đơn
+    $sql = "UPDATE taikhoan SET pass = '" . md5($pass) . "' WHERE email = '" . $email . "'";
     pdo_execute($sql);
 }
