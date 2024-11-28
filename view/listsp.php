@@ -18,7 +18,7 @@ include "global.php";
         <p class="tieude">Sản Phẩm Được Đánh Giá Cao</p>
         <?php
         foreach ($load_sp_star as $star) {
-             ?>
+        ?>
             <a href="?act=ctsp&idsp=<?= $star['id'] ?> &iddm=<?= $star['iddm'] ?>">
                 <div class="pro_top">
                     <div class="img_top"><img width="70" height="70" src="uploads/img_sp/<?= $star['img'] ?>" alt=""></div>
@@ -51,10 +51,10 @@ include "global.php";
             <div class="div">
                 <select name="gia" id="">
                     <option hidden value="">Giá</option>
-                    <option value="500000 AND 2000000">5 trăm - 2 triệu</option>
+                    <option value="100000 AND 500000">100000 - 500000</option>
+                    <option value="500000 AND 2000000">500000 - 2 triệu</option>
                     <option value="2000000 AND 5000000">2 - 5 triệu</option>
-                    <option value="5000000 AND 10000000">5 - 10 triệu</option>
-                    <option value="10000000 AND 20000000">Trên 10 triệu</option>
+                    <option value="5000000 AND 15000000">Trên 5 triệu</option>
                 </select>
             </div>
             <div class="div">
@@ -78,7 +78,7 @@ include "global.php";
         <div class="block mt listsp">
             <?php
             foreach ($listsp_dm as $value) {
-                 ?>
+            ?>
                 <div class="item">
                     <a href="?act=ctsp&idsp=<?= $value['id'] ?>&iddm=<?= $value['iddm'] ?>">
                         <div class="img">
@@ -97,7 +97,6 @@ include "global.php";
                             <i class="fa-solid fa-star"></i> <span>(<?= number_format($value['avg_star'], 1) ?>)</span> <br />
                             <!-- <span>Đã mua 4.5k</span> -->
                         </p>
-                        <p><a href="?act=thanhtoan&idsp=<?= $value['id'] ?>"><button>Mua Ngay</button></a></p>
                     </div>
                 </div>
 

@@ -1,7 +1,6 @@
 <?php $list_dm = loadAll_danhmuc(); ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +15,7 @@
         <header>
             <div class="top">
                 <div class="logo">
-                    <a href="index.php"><img width="250" src="image/logg 1.png" alt="" /></a>
+                    <a href="index.php"><img width="50" src="image/logo_client.png" alt="" /></a>
 
                 </div>
                 <div class="input">
@@ -83,7 +82,6 @@
                             <li>
                                 <a href="index.php"><i class="fa-solid fa-house"></i>Trang Chủ</a>
                             </li>
-                            <li><a href="">Cửa hàng</a></li>
                             <li><a href="?act=listsp">Sản phẩm</a></li>
                             <li><a href="">Blog</a></li>
                             <li><a href="">Liên hệ</a></li>

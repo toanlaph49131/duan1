@@ -14,7 +14,7 @@ $thong_ke_doanh_thu = thong_ke_doanh_thu();
 $thong_ke = thong_ke();
 $count_sp = count(loadAll_sanpham());
 $thong_ke_doanh_thu_thang = thong_ke_doanh_thu_thanh();
-$loadAll_sanpham_trang_thai_1 = loadAll_sanpham_trang_thai_1();
+$loadAll_sanpham_trang_thai_0 = loadAll_sanpham_trang_thai_0();
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
