@@ -257,26 +257,32 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             case 'quenmk':
                 include 'view/taikhoan/quenmk.php';
                 if (isset($_POST['guiemail']) && $_POST['guiemail']) {
-                 //nếu thấy tồn tại email cho phép cập nhật mật khẩu mới và xóa mật khẩu cũ
+                    // Nếu thấy tồn tại email cho phép cập nhật mật khẩu mới và xóa mật khẩu cũ
                     $email = $_POST['email'];
+                    
+                    // Lưu email vào cookie, thời gian hết hạn là 1 ngày (86400 giây)
+                    setcookie('email', $email, time() + 86400, "/"); 
+            
                     if(checkemail($email)){
-                        header('location:view/taikhoan/reset_pass.php');
+                        header('location:index.php?act=reset_pass');
                     }
-
                 }
                 break;
             case 'reset_pass':
-                if(isset($_SESSION['submit']) && $_SESSION['submit']){
+                if(isset($_COOKIE['email']) && isset($_POST['submit']) && $_POST['submit']) {
                     $pass = $_POST['pass'];
-                    $confim = $_POST['confim'];
-                    if($pass == $confim){
-                        update_mk_email($_SESSION['iduser'], $pass);
-                        echo "<script>alert('Đổi mật khẩu thành công!')</script>";
-                        header('location:index.php?act=dangnhap');
+                    $confirm = $_POST['confim'];
+                    $email = $_COOKIE['email'];  // Lấy email từ cookie
+            
+                    if($pass == $confirm) {
+                        update_mk_email($email, md5($pass));
+                        echo "<script>alert('Đổi mật khẩu thành công!')</script>";
+                        header('location:view/taikhoan/dangnhap.php?act=dangnhap');
                     }
                 }
-                header('location:index.php?act=reset_pass');
+                include 'view/taikhoan/reset_pass.php';
                 break;
+            
 
                 
     }

@@ -29,13 +29,10 @@
 </section>
 <aside>
     <div class="right-now">
-        <img width="680" src="image/banner-nho.jpg" alt="" />
-        <button>Right now</button>
+        <img width="1360" height="500" src="image/banner-nho.jpg" alt="" />
+        
     </div>
-    <div class="right-now">
-        <img width="680" src="image/banner-nho.jpg" alt="" />
-        <button>Right now</button>
-    </div>
+    
 </aside>
 <main>
     <div class="box-product">
