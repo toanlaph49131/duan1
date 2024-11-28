@@ -12,6 +12,7 @@ include 'view/header.php';
 include 'model/cart.php';
 include 'model/validate_form.php';
 include 'model/validate_pass.php';
+include 'model/binhluan.php';
 include 'model/donhang.php';
 include 'model/thongke.php';
 
