@@ -10,7 +10,7 @@ function loadall_donhang($iddh = 0)
 function load_donhang_user($iduser) 
 {
     
-    $sql = "SELECT * FROM donhang WHERE id_user = $iduser";
+    $sql = "SELECT * FROM donhang WHERE id_user = $iduser order by id desc";
     return pdo_query($sql);
 }
 
@@ -56,12 +56,12 @@ function loadall_chitietdonhang()
 
 function load_ctdh($id)
 {
-    $sql = "SELECT ct_don_hang.*, donhang.id_user, donhang.trangthai FROM ct_don_hang  JOIN donhang ON ct_don_hang.id_dh = donhang.id WHERE donhang.id_user = $id";
+    $sql = "SELECT ct_don_hang.*, donhang.id_user, donhang.trangthai FROM ct_don_hang  JOIN donhang ON ct_don_hang.id_dh = donhang.id WHERE donhang.id_user = $id order by ct_don_hang.id desc";
     return pdo_query($sql);
 }
 function update_trangthai($id_dh)
 {
-    $sql = "UPDATE `donhang` SET trangthai = 4 WHERE id = '$id_dh'";
+    $sql = "UPDATE `donhang` SET trangthai = 5 WHERE id = '$id_dh'";
     pdo_execute($sql);
 }
 function load_sp_chua_danh_gia($iduser,$iddh)
@@ -80,3 +80,33 @@ function load_sp_chua_danh_gia($iduser,$iddh)
     return pdo_query($sql);
 }
 
+function load_donhang_choXacNhanh($iduser) 
+{
+    
+    $sql = "SELECT * FROM donhang WHERE id_user = $iduser and trangthai = 1 order by id desc";
+    return pdo_query($sql);
+}
+function load_donhang_daXacNhan($iduser) 
+{
+    
+    $sql = "SELECT * FROM donhang WHERE id_user = $iduser and trangthai = 2 order by id desc";
+    return pdo_query($sql);
+}
+function load_donhang_dangGiaoHang($iduser) 
+{
+    
+    $sql = "SELECT * FROM donhang WHERE id_user = $iduser and trangthai = 3 order by id desc";
+    return pdo_query($sql);
+}
+function load_donhang_giaoHangtc($iduser) 
+{
+    
+    $sql = "SELECT * FROM donhang WHERE id_user = $iduser and trangthai = 4 order by id desc";
+    return pdo_query($sql);
+}
+function load_donhang_daHuy($iduser) 
+{
+    
+    $sql = "SELECT * FROM donhang WHERE id_user = $iduser and trangthai = 5 order by id desc";
+    return pdo_query($sql);
+}

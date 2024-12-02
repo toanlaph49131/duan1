@@ -38,13 +38,13 @@
                                 </td>
                                 <td>
                                     <?php
-                                    if ($value['trangthai'] == 0) {
+                                    if ($value['trangthai'] == 1) {
                                         echo '<span class="badge bg-danger text-white">Chờ xác nhận</span>';
-                                    } else if ($value['trangthai'] == 1) {
-                                        echo '<span class="badge bg-primary text-white">Đã xác nhận</span>';
                                     } else if ($value['trangthai'] == 2) {
+                                        echo '<span class="badge bg-primary text-white">Đã xác nhận</span>';
+                                    } else if ($value['trangthai'] == 3) {
                                         echo '<span class="badge bg-warning text-white">Đang giao hàng</span>';
-                                    } elseif ($value['trangthai'] == 3) {
+                                    } elseif ($value['trangthai'] == 4) {
                                         echo '<span class="badge bg-success text-white">Giao hàng thành công</span>';
                                     } else {
                                         echo '<span class="badge text-secondary text-white">Đã hủy</span>';

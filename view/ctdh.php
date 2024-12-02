@@ -23,7 +23,7 @@
             <?php }
             ?>
             <?php
-            if ($trangthai === 0) { ?>
+            if ($trangthai === 1) { ?>
                 <tr>
                     <td></td>
                     <td></td>
@@ -31,7 +31,7 @@
                     <td></td>
                     <td>
                         <a href="?act=update_trangthai&id_dh=<?= $id ?>">
-                            <button>Hủy đơn hàng</button>
+                            <button onclick="return confirm('Quan het tien')">Hủy đơn hàng</button>
                         </a>
                     </td>
                 </tr>
@@ -40,7 +40,7 @@
         </tbody>
     </table>
     <?php
-    if ($trangthai === 3 && count($load_not_vote) > 0) { ?>
+    if ($trangthai === 4 && count($load_not_vote) > 0) { ?>
         <div class="form-Evaluate mt">
             <form action="?act=ctdh&id_dh=<?= $id ?>" method="post">
                 <table>

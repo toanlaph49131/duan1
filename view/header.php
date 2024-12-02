@@ -83,7 +83,6 @@
                             <li>
                                 <a href="index.php"><i class="fa-solid fa-house"></i>Trang Chủ</a>
                             </li>
-                            <li><a href="">Cửa hàng</a></li>
                             <li><a href="?act=listsp">Sản phẩm</a></li>
                             <li><a href="">Blog</a></li>
                             <li><a href="">Liên hệ</a></li>
