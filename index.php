@@ -116,6 +116,7 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             if (isset($_SESSION['user'])) {
                 $found = false;
                 $loadAll_cart = loadAll_cart($_SESSION['iduser']);
+                
                 if (isset($_POST['btn']) && $_POST['btn']) {
                     $idsp = $_GET['idsp'];
                     $iduser = $_SESSION['iduser'];
@@ -173,6 +174,7 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             break;
         case 'thanhtoan':
             if (isset($_SESSION['iduser'])) {
+                
                 if (isset($_GET['idcart']) && $_GET['idcart'] > 0) {
                     $idcart = $_GET['idcart'];
                 } else {
@@ -254,37 +256,169 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             $dh = load_donhang_user($_SESSION['iduser']);
             include 'view/taikhoan/mytaikhoan.php';
             break;
-            case 'quenmk':
-                include 'view/taikhoan/quenmk.php';
-                if (isset($_POST['guiemail']) && $_POST['guiemail']) {
-                    // Nếu thấy tồn tại email cho phép cập nhật mật khẩu mới và xóa mật khẩu cũ
-                    $email = $_POST['email'];
-                    
-                    // Lưu email vào cookie, thời gian hết hạn là 1 ngày (86400 giây)
-                    setcookie('email', $email, time() + 86400, "/"); 
-            
-                    if(checkemail($email)){
-                        header('location:index.php?act=reset_pass');
-                    }
-                }
-                break;
-            case 'reset_pass':
-                if(isset($_COOKIE['email']) && isset($_POST['submit']) && $_POST['submit']) {
-                    $pass = $_POST['pass'];
-                    $confirm = $_POST['confim'];
-                    $email = $_COOKIE['email'];  // Lấy email từ cookie
-            
-                    if($pass == $confirm) {
-                        update_mk_email($email, md5($pass));
-                        echo "<script>alert('Đổi mật khẩu thành công!')</script>";
-                        header('location:view/taikhoan/dangnhap.php?act=dangnhap');
-                    }
-                }
-                include 'view/taikhoan/reset_pass.php';
-                break;
-            
+        case 'quenmk':
+            include 'view/taikhoan/quenmk.php';
+            if (isset($_POST['guiemail']) && $_POST['guiemail']) {
+                // Nếu thấy tồn tại email cho phép cập nhật mật khẩu mới và xóa mật khẩu cũ
+                $email = $_POST['email'];
 
-                
+                // Lưu email vào cookie, thời gian hết hạn là 1 ngày (86400 giây)
+                setcookie('email', $email, time() + 86400, "/");
+
+                if (checkemail($email)) {
+                    header('location:index.php?act=reset_pass');
+                }
+            }
+            break;
+        case 'reset_pass':
+            if (isset($_COOKIE['email']) && isset($_POST['submit']) && $_POST['submit']) {
+                $pass = $_POST['pass'];
+                $confirm = $_POST['confim'];
+                $email = $_COOKIE['email'];  // Lấy email từ cookie
+
+                if ($pass == $confirm) {
+                    update_mk_email($email, md5($pass));
+                    echo "<script>alert('Đổi mật khẩu thành công!')</script>";
+                    header('location:view/taikhoan/dangnhap.php?act=dangnhap');
+                }
+            }
+            include 'view/taikhoan/reset_pass.php';
+            break;
+        case 'choXacNhan':
+            if (isset($_POST['btn_tt']) && $_POST['btn_tt']) {
+                $user = $_POST['user'];
+                $email = $_POST['email'];
+                $sdt = $_POST['sdt'];
+                $address = $_POST['diachi'];
+                $err = validate_form($user, $email, $sdt, $address);
+                if (empty($err)) {
+                    update_taikhoan($_SESSION['iduser'], $user, $email, $sdt, $address);
+                    header("Location: index.php?act=mytaikhoan");
+                }
+            }
+            if (isset($_POST['btn_update_pass']) && $_POST['btn_update_pass']) {
+                $pass = $_POST['pass'];
+                $captcha = $_POST['captcha'];
+                $ma = $_POST['ma'];
+                $confim = $_POST['confim'];
+                $pass2 = $_POST['pass2'];
+                $err  = check_update_pass($pass, $ma, $captcha, $confim, $pass2);
+                if (empty($err)) {
+                    update_mk($_SESSION['iduser'], $pass2);
+                    echo "<script>alert('Đổi mật khẩu thành công!')</script>";
+                }
+            }
+            $choXacNhanh = load_donhang_choXacNhanh($_SESSION['iduser']);
+            include 'view/taikhoan/choXacNhan.php';
+            break;
+        case 'DaXacNhan':
+            if (isset($_POST['btn_tt']) && $_POST['btn_tt']) {
+                $user = $_POST['user'];
+                $email = $_POST['email'];
+                $sdt = $_POST['sdt'];
+                $address = $_POST['diachi'];
+                $err = validate_form($user, $email, $sdt, $address);
+                if (empty($err)) {
+                    update_taikhoan($_SESSION['iduser'], $user, $email, $sdt, $address);
+                    header("Location: index.php?act=mytaikhoan");
+                }
+            }
+            if (isset($_POST['btn_update_pass']) && $_POST['btn_update_pass']) {
+                $pass = $_POST['pass'];
+                $captcha = $_POST['captcha'];
+                $ma = $_POST['ma'];
+                $confim = $_POST['confim'];
+                $pass2 = $_POST['pass2'];
+                $err  = check_update_pass($pass, $ma, $captcha, $confim, $pass2);
+                if (empty($err)) {
+                    update_mk($_SESSION['iduser'], $pass2);
+                    echo "<script>alert('Đổi mật khẩu thành công!')</script>";
+                }
+            }
+            $daXacNhan = load_donhang_daXacNhan($_SESSION['iduser']);
+            include 'view/taikhoan/daXacNhan.php';
+            break;
+        case 'DangGiaoHang':
+            if (isset($_POST['btn_tt']) && $_POST['btn_tt']) {
+                $user = $_POST['user'];
+                $email = $_POST['email'];
+                $sdt = $_POST['sdt'];
+                $address = $_POST['diachi'];
+                $err = validate_form($user, $email, $sdt, $address);
+                if (empty($err)) {
+                    update_taikhoan($_SESSION['iduser'], $user, $email, $sdt, $address);
+                    header("Location: index.php?act=mytaikhoan");
+                }
+            }
+            if (isset($_POST['btn_update_pass']) && $_POST['btn_update_pass']) {
+                $pass = $_POST['pass'];
+                $captcha = $_POST['captcha'];
+                $ma = $_POST['ma'];
+                $confim = $_POST['confim'];
+                $pass2 = $_POST['pass2'];
+                $err  = check_update_pass($pass, $ma, $captcha, $confim, $pass2);
+                if (empty($err)) {
+                    update_mk($_SESSION['iduser'], $pass2);
+                    echo "<script>alert('Đổi mật khẩu thành công!')</script>";
+                }
+            }
+            $dangGiaoHang = load_donhang_dangGiaoHang($_SESSION['iduser']);
+            include 'view/taikhoan/DangGiaoHang.php';
+            break;
+        case 'GiaoHangThanhCong':
+            if (isset($_POST['btn_tt']) && $_POST['btn_tt']) {
+                $user = $_POST['user'];
+                $email = $_POST['email'];
+                $sdt = $_POST['sdt'];
+                $address = $_POST['diachi'];
+                $err = validate_form($user, $email, $sdt, $address);
+                if (empty($err)) {
+                    update_taikhoan($_SESSION['iduser'], $user, $email, $sdt, $address);
+                    header("Location: index.php?act=mytaikhoan");
+                }
+            }
+            if (isset($_POST['btn_update_pass']) && $_POST['btn_update_pass']) {
+                $pass = $_POST['pass'];
+                $captcha = $_POST['captcha'];
+                $ma = $_POST['ma'];
+                $confim = $_POST['confim'];
+                $pass2 = $_POST['pass2'];
+                $err  = check_update_pass($pass, $ma, $captcha, $confim, $pass2);
+                if (empty($err)) {
+                    update_mk($_SESSION['iduser'], $pass2);
+                    echo "<script>alert('Đổi mật khẩu thành công!')</script>";
+                }
+            }
+            $giaoHangtc = load_donhang_giaoHangtc($_SESSION['iduser']);
+            include 'view/taikhoan/GiaoHangThanhCong.php';
+            break;
+        case 'DaHuy':
+            if (isset($_POST['btn_tt']) && $_POST['btn_tt']) {
+                $user = $_POST['user'];
+                $email = $_POST['email'];
+                $sdt = $_POST['sdt'];
+                $address = $_POST['diachi'];
+                $err = validate_form($user, $email, $sdt, $address);
+                if (empty($err)) {
+                    update_taikhoan($_SESSION['iduser'], $user, $email, $sdt, $address);
+                    header("Location: index.php?act=mytaikhoan");
+                }
+            }
+            if (isset($_POST['btn_update_pass']) && $_POST['btn_update_pass']) {
+                $pass = $_POST['pass'];
+                $captcha = $_POST['captcha'];
+                $ma = $_POST['ma'];
+                $confim = $_POST['confim'];
+                $pass2 = $_POST['pass2'];
+                $err  = check_update_pass($pass, $ma, $captcha, $confim, $pass2);
+                if (empty($err)) {
+                    update_mk($_SESSION['iduser'], $pass2);
+                    echo "<script>alert('Đổi mật khẩu thành công!')</script>";
+                }
+            }
+            $daHuy = load_donhang_daHuy($_SESSION['iduser']);
+            include 'view/taikhoan/daHuy.php';
+            break;
     }
 } else {
     include 'view/home.php';
