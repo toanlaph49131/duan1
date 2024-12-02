@@ -79,16 +79,22 @@
                 <div class="col-md-6 mb-4">
                     <label for="validationCustom04" class="form-label font-weight-bold">Trạng thái</label>
                     <?php
-                    if ($loadone_dh[0]['trangthai'] == 4) { ?>
+                    // Kiểm tra nếu trạng thái là "Đã hủy" (trangthai == 4) hoặc "Giao hàng thành công" (trangthai == 3)
+                    if ($loadone_dh[0]['trangthai'] == 5) { ?>
                         <select class="custom-select" name="trangthai" disabled>
                             <option value="">Đã hủy</option>
                         </select>
+                    <?php } elseif ($loadone_dh[0]['trangthai'] == 4) { ?>
+                        <!-- Trạng thái là "Giao hàng thành công", không cho phép thay đổi -->
+                        <select class="custom-select" name="trangthai" disabled>
+                            <option value="3" selected>Giao hàng thành công</option>
+                        </select>
                     <?php } else { ?>
                         <select class="custom-select" name="trangthai">
-                            <option <?= $loadone_dh[0]['trangthai'] === 0 ? "selected" : "" ?> value="0">Chờ xác nhận</option>
-                            <option <?= $loadone_dh[0]['trangthai'] === 1 ? "selected" : "" ?> value="1">Đã xác nhận</option>
-                            <option <?= $loadone_dh[0]['trangthai'] === 2 ? "selected" : "" ?> value="2">Đang giao hàng</option>
-                            <option <?= $loadone_dh[0]['trangthai'] === 3 ? "selected" : "" ?> value="3">Giao hàng thành công</option>
+                            <option <?= $loadone_dh[0]['trangthai'] === 1 ? "selected" : "" ?> value="1">Chờ xác nhận</option>
+                            <option <?= $loadone_dh[0]['trangthai'] === 2 ? "selected" : "" ?> value="2">Đã xác nhận</option>
+                            <option <?= $loadone_dh[0]['trangthai'] === 3 ? "selected" : "" ?> value="3">Đang giao hàng</option>
+                            <option <?= $loadone_dh[0]['trangthai'] === 4 ? "selected" : "" ?> value="4">Giao hàng thành công</option>
                         </select>
                     <?php }
                     ?>

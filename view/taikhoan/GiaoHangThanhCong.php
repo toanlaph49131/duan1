@@ -83,7 +83,7 @@ $randomString = substr(str_shuffle($characters), 0, $length);
                 </thead>
                 <tbody>
                     <?php
-                    foreach ($dh as $value) {
+                    foreach ($giaoHangtc as $value) {
                         extract($value);
                         if ($trangthai === 1) {
                             $trangthai = '<span style="background-color: #e74a3b;color: white; border-radius: 8px;padding: 0 5px">Chưa xác nhận</span>';

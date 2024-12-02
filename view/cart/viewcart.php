@@ -20,10 +20,10 @@
                 foreach ($loadAll_cart as $value) {
                     extract($value);
                     $money = $gia_new * $soluong;
-            ?>
+                    ?>
                     <tr>
                         <form action="?act=addtocart&idcart=<?= $idcart ?>" method="post">
-                            <td><?= $i++ ?></td>
+                            <td>  <input type="checkbox" name="selected_cart[]" value="<?= $idcart ?>"></td>
                             <td><img width="60" src="uploads/img_sp/<?= $img ?>" alt=""></td>
                             <td> <a href="?act=ctsp&idsp=<?= $id ?>"><?= $name ?> </a></td>
                             <td>₫<?= number_format($gia_new) ?> </td>
@@ -55,7 +55,6 @@
                 </td>
             <?php  }
             ?>
-
         </tbody>
     </table>
     <?php
@@ -64,7 +63,7 @@
     <?php } else { ?>
         <div class="table-right">
             <div class="discount">
-            <h3>TỔNG ĐƠN HÀNG</h3>
+                <h3>TỔNG ĐƠN HÀNG</h3>
             </div>
             <div class="form-sum">
                 <form action="" method="post">
@@ -86,5 +85,4 @@
         </div>
     <?php }
     ?>
-
 </div>

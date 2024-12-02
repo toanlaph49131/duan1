@@ -61,19 +61,32 @@ foreach ($loadbl_sp as $value) {
                     <?= $loadone_sp[0]['kieumay'] ?>
                 </p>
             </div>
+            <div class="des-sort mb">
+                <p>Tình trạng kho:</p>
+                <p>
+                    <?php
+                    if ($loadone_sp[0]['soluong'] < 10) {
+                        echo '<span style="color: red;">Sắp hết hàng</span>';
+                    } else {
+                        echo '<span style="color: green;">Đang còn</span>';
+                    }
+                    ?>
+                </p>
+            </div>
+
             <form action="?act=addtocart&idsp=<?= $loadone_sp[0]['id'] ?>" method="post">
                 <div class="box-input mb">
                     Số lượng:
-                    <input class="qtt" type="number" min="1" max="10" value="1" name="soluong" />
+                    <input class="qtt" type="number" min="1" max="<?=$loadone_sp[0]['soluong']?>" value="1" name="soluong" />
                     <span>&nbsp; &nbsp; <?= $loadone_sp[0]['soluong'] ?> sản phẩm có sẵn</span>
                 </div>
                 <div class="box-submit">
                     <button name="btn" value="btn" type="submit">THÊM VÀO GIỎ HÀNG</button>
                 </div>
             </form>
-            
+
             <div class="box-submit">
-            <button><a href="?act=thanhtoan&idsp=<?= $loadone_sp[0]['id'] ?>">MUA NGAY</a></button>
+                <button><a href="?act=thanhtoan&idsp=<?= $loadone_sp[0]['id'] ?>">MUA NGAY</a></button>
             </div>
         </div>
     </div>

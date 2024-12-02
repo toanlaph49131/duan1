@@ -159,6 +159,23 @@ LIMIT 0,5
 }
 function list_ton_kho()
 {
-    $sql = "select id, name, soluong from sanpham ";
+    $sql = "select id, name, soluong from sanpham order by soluong asc";
     return pdo_query($sql);
 }
+
+function update_ton_kho($id, $name, $soluong)
+{
+    $sql = "UPDATE `sanpham` SET 
+        `name` = '$name',
+        `soluong` = $soluong
+        WHERE `id` = $id";
+    pdo_execute($sql);
+}
+
+function list_one_ton_kho($id)
+{
+    $sql = "SELECT `id`, `name`, `soluong` FROM `sanpham` WHERE id = $id";
+    return pdo_query_one($sql);
+}
+
+
