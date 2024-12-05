@@ -73,7 +73,7 @@ function load_sp_chua_danh_gia($iduser,$iddh)
     JOIN donhang dh ON ctdh.id_dh = dh.id
     LEFT JOIN binhluan bl ON sp.id = bl.id_pro AND dh.id_user = bl.id_user
     WHERE dh.id_user = '$iduser'
-      AND dh.trangthai = 3
+      AND dh.trangthai = 4
       AND dh.id = '$iddh'
       AND bl.id IS NULL
 ";

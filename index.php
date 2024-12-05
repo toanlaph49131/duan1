@@ -289,7 +289,7 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
                 $user = $_POST['user'];
                 $email = $_POST['email'];
                 $sdt = $_POST['sdt'];
-                $address = $_POST['diachi'];
+                $address = $_POST['diachi'];    
                 $err = validate_form($user, $email, $sdt, $address);
                 if (empty($err)) {
                     update_taikhoan($_SESSION['iduser'], $user, $email, $sdt, $address);
