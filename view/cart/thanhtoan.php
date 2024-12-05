@@ -7,24 +7,24 @@
 					<div class="ip-left">
 						<div class="ip">
 							<label for="user">Tên người nhận</label> <br>
-							<input class="" name="user" id="user" type="text" placeholder="Nguyễn Văn A" value="<?= $_SESSION['user'] ?>"><br>
+							<input class="" name="user" id="user" type="text" placeholder="Nguyễn Văn A" value="<?= $tk['user'] ?>"><br>
 							<span class="err" style='color:red; '><?= (isset($err['user'])) ? $err['user'] : '' ?></span>
 						</div>
 						<div class="ip">
 							<label for="sdt">Số điện thoại</label><br>
-							<input class="" name="sdt" id="sdt" type="number" placeholder="+84">
+							<input class="" name="sdt" id="sdt" type="number" placeholder="+84" value="<?= $tk['tel'] ?>">
 							<span class="err" style='color:red; '><?= (isset($err['sdt'])) ? $err['sdt'] : '' ?></span>
 						</div>
 					</div>
 					<div class="ip-right">
 						<div class="ip">
 							<label for="name">Email</label><br>
-							<input class="" type="text" name="email" placeholder="example@email.com" value="<?= $_SESSION['email'] ?>">
+							<input class="" type="text" name="email" placeholder="example@email.com" value="<?= $tk['email'] ?>">
 							<span class="err" style='color:red; '><?= (isset($err['email'])) ? $err['email'] : '' ?></span> <br>
 						</div>
 						<div class="ip">
 							<label for="name">Địa chỉ</label><br>
-							<input class="" type="text" name="address" placeholder="Địa chỉ ">
+							<input class="" type="text" name="address" placeholder="Địa chỉ " value="<?= $tk['address'] ?>">
 							<span class="err" style='color:red; '><?= (isset($err['address'])) ? $err['address'] : '' ?></span>
 						</div>
 					</div>
