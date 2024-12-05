@@ -43,7 +43,7 @@ function checkemail($email)
 }
 function  update_taikhoan($id, $user, $email, $sdt, $address)
 {
-    $sql = "UPDATE `taikhoan` SET `user`='$user',`email`='$email',`tel`='$sdt',`address`='$address', `checkname` = '1'  WHERE id=" . $id;
+    $sql = "UPDATE `taikhoan` SET `user`='$user',`email`='$email',`tel`='$sdt',`address`='$address', `checkname` = '0'  WHERE id=" . $id;
     pdo_execute($sql);
 }
 
