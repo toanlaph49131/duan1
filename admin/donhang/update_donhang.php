@@ -9,7 +9,7 @@
             <table class="table text-center">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col">STT</th>
                         <th scope="col">Tên sản phẩm</th>
                         <th scope="col">Hình ảnh</th>
                         <th scope="col">Số lượng</th>
@@ -79,7 +79,7 @@
                 <div class="col-md-6 mb-4">
                     <label for="validationCustom04" class="form-label font-weight-bold">Trạng thái</label>
                     <?php
-                    // Kiểm tra nếu trạng thái là "Đã hủy" (trangthai == 4) hoặc "Giao hàng thành công" (trangthai == 3)
+                    // Kiểm tra nếu trạng thái là "Đã hủy" (trangthai == 5) hoặc "Giao hàng thành công" (trangthai == 3)
                     if ($loadone_dh[0]['trangthai'] == 5) { ?>
                         <select class="custom-select" name="trangthai" disabled>
                             <option value="">Đã hủy</option>
@@ -87,14 +87,25 @@
                     <?php } elseif ($loadone_dh[0]['trangthai'] == 4) { ?>
                         <!-- Trạng thái là "Giao hàng thành công", không cho phép thay đổi -->
                         <select class="custom-select" name="trangthai" disabled>
-                            <option value="3" selected>Giao hàng thành công</option>
+                            <option value="4" selected>Giao hàng thành công</option>
                         </select>
                     <?php } else { ?>
                         <select class="custom-select" name="trangthai">
-                            <option <?= $loadone_dh[0]['trangthai'] === 1 ? "selected" : "" ?> value="1">Chờ xác nhận</option>
-                            <option <?= $loadone_dh[0]['trangthai'] === 2 ? "selected" : "" ?> value="2">Đã xác nhận</option>
-                            <option <?= $loadone_dh[0]['trangthai'] === 3 ? "selected" : "" ?> value="3">Đang giao hàng</option>
-                            <option <?= $loadone_dh[0]['trangthai'] === 4 ? "selected" : "" ?> value="4">Giao hàng thành công</option>
+                            <?php
+                            // Kiểm tra trạng thái hiện tại để chỉ hiển thị trạng thái tiến triển
+                            if ($loadone_dh[0]['trangthai'] == 1) { ?>
+                                <option value="1" selected>Chờ xác nhận</option>
+                                <option value="2">Đã xác nhận</option>
+                                <option value="3">Đang giao hàng</option>
+                                <option value="4">Giao hàng thành công</option>
+                            <?php } elseif ($loadone_dh[0]['trangthai'] == 2) { ?>
+                                <option value="2" selected>Đã xác nhận</option>
+                                <option value="3">Đang giao hàng</option>
+                                <option value="4">Giao hàng thành công</option>
+                            <?php } elseif ($loadone_dh[0]['trangthai'] == 3) { ?>
+                                <option value="3" selected>Đang giao hàng</option>
+                                <option value="4">Giao hàng thành công</option>           
+                            <?php } ?>
                         </select>
                     <?php }
                     ?>
