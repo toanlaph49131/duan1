@@ -16,7 +16,7 @@
         <header>
             <div class="top">
                 <div class="logo">
-                    <!-- <a href="index.php"><img width="250" src="image/logg 1.png" alt="" /></a> -->
+                    <a href="index.php"><img width="65" src="https://hinhnen4k.com/wp-content/uploads/2023/02/gai-xinh-2k7-10-1.jpg" alt="" /></a>
 
                 </div>
                 <div class="input">

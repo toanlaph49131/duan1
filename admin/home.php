@@ -15,7 +15,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Doanh thu</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                            <?= number_format($thong_ke_doanh_thu['tong_thanhtien'], 0, ',', '.')?> 
+                            <?= $thong_ke_doanh_thu['tong_thanhtien'] ? number_format($thong_ke_doanh_thu['tong_thanhtien'], 0, ',', '.') : '0'?> 
                                 ₫</div>
                         </div>
                         <div class="col-auto">
