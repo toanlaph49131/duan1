@@ -1,3 +1,4 @@
+
 <?php
 
 function loadAll_cart($iduser)
@@ -25,7 +26,7 @@ function update_sl($id, $idsp, $them)
     $sql = "UPDATE cart SET soluong = '$them' WHERE iduser = '$id' AND idsp = '$idsp'";
     pdo_execute($sql);
 }
-function update_soluong($id, $idsp, $giam = "", $tang = "")
+function update_soluong($id, $idsp, $giam = "", $tang = "",)
 {
     $min_quantity = 1;
     $max_quantity = 10;

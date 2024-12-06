@@ -143,13 +143,13 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "./sanpham/list_sp.php";
                 break;
             }
-        case "trash":
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                khoiphuc_sp($_GET['id']);
-                header('location: index.php?act=trash');
-            }
-            include "./sanpham/trash.php";
-            break;
+            case "trash" :
+                if(isset($_GET['id']) && $_GET['id'] > 0){
+                    khoiphuc_sp($_GET['id']);
+                    header('location: index.php?act=trash');
+                }
+                include "./sanpham/trash.php";
+                break;
         case "update_sp": {
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $list_dm = loadAll_danhmuc();
@@ -245,7 +245,7 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                         } else {
                             $trangthai = 4;
                         }
-
+                        
 
                         if (isset($_POST['ghichu']) && $_POST['ghichu']  != "") {
                             $ghichu = $_POST['ghichu'];
@@ -266,6 +266,23 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "./donhang/list_ctdh.php";
                 break;
             }
+            case "list_khohang":
+                $list_khohang = list_ton_kho();
+                include "./khohang/list_khohang.php";
+                break;
+            case "update_khohang":
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $loadone_sp = list_one_ton_kho($_GET['id']);
+                    if (isset($_POST['submit']) && ($_POST['submit'])) {
+                        $name = $_POST['name'];
+                        $soluong = $_POST['soluong'];
+    
+                        update_ton_kho($_GET['id'],$name,$soluong);
+                        header('location: index.php?act=list_khohang');
+                    }
+                }
+                include "./khohang/update_khohang.php";
+                break;
         case 'dangxuat':
             session_unset();
             header('location: ../index.php');
@@ -277,23 +294,6 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "./thongke/thongke.php";
                 break;
             }
-        case "list_khohang":
-            $list_khohang = list_ton_kho();
-            include "./khohang/list_khohang.php";
-            break;
-        case "update_khohang":
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                $loadone_sp = list_one_ton_kho($_GET['id']);
-                if (isset($_POST['submit']) && ($_POST['submit'])) {
-                    $name = $_POST['name'];
-                    $soluong = $_POST['soluong'];
-
-                    update_ton_kho($_GET['id'],$name,$soluong);
-                    header('location: index.php?act=list_khohang');
-                }
-            }
-            include "./khohang/update_khohang.php";
-            break;
     }
 } else {
     include "home.php";

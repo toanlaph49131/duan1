@@ -24,17 +24,26 @@
             ?>
             <?php
             if ($trangthai === 1) { ?>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                        <a href="?act=update_trangthai&id_dh=<?= $id ?>">
-                            <button onclick="return confirm('Quan het tien')">Hủy đơn hàng</button>
-                        </a>
-                    </td>
-                </tr>
+                <form method="POST" action="?act=update_trangthai&id_dh=<?= $id ?>">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>
+                            <select name="ly_do_huy" id="ly_do_huy">
+                                <option value="0">-- Chọn lý do hủy đơn --</option>
+                                <option value="Đặt nhầm địa chỉ">Đặt nhầm địa chỉ</option>
+                                <option value="Chờ xác nhận quá lâu">Chờ xác nhận quá lâu</option>
+                                <option value="Không muốn mua sản phẩm này nữa">Không muốn mua sản phẩm này nữa</option>
+                                <option value="Nhập sai thông tin đặt hàng">Nhập sai thông tin đặt hàng</option>
+                            </select>
+                        </td>
+                        <td>
+                            <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn hủy đơn hàng?')">Hủy đơn hàng</button>
+                        </td>
+                    </tr>
+                </form>
+
             <?php }
             ?>
         </tbody>

@@ -14,7 +14,9 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Doanh thu</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= number_format($thong_ke_doanh_thu['tong_thanhtien'], 0, ',', '.') ?> ₫</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <?= $thong_ke_doanh_thu['tong_thanhtien'] ? number_format($thong_ke_doanh_thu['tong_thanhtien'], 0, ',', '.') : '0'?> 
+                                ₫</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -59,7 +61,7 @@
                         <!-- Card Body -->
                         <div class="card-body">
                             <div class="chart-area">
-                                <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
                                 <script type="text/javascript">
                                     google.charts.load("current", {
                                         packages: ["corechart"]

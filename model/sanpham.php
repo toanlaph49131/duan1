@@ -179,3 +179,10 @@ function list_one_ton_kho($id)
 }
 
 
+function update_soluong_sanpham($idsp, $soluong)
+{
+    $sql = "UPDATE `sanpham` SET 
+    `soluong` = `soluong` - $soluong 
+    WHERE `id` = $idsp AND `soluong` >= $soluong";
+    pdo_execute($sql);
+}

@@ -168,10 +168,15 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
         case 'thanhtoantc':
             include 'view/cart/thanhtoantc.php';
             break;
-        case 'update_trangthai':
-            update_trangthai($_GET['id_dh']);
-            header('Location: ?act=mytaikhoan');
-            break;
+            case 'update_trangthai':
+                if (isset($_POST['ly_do_huy']) && $_POST['ly_do_huy'] != "0") {
+                    $lyDoHuy = $_POST['ly_do_huy'];
+                    update_trangthai($_GET['id_dh'], $lyDoHuy);
+                    header('Location: ?act=mytaikhoan');
+                } else {
+                    echo "<script>alert('Vui lòng chọn lý do hủy đơn hàng!'); window.history.back();</script>";
+                }
+                break;            
         case 'thanhtoan':
             if (isset($_SESSION['iduser'])) {
                 
@@ -184,7 +189,6 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
                 if (isset($_GET['idsp'])) {
                     $loadone_sp = loadAll_sanpham("",  $_GET['idsp']);
                 }
-
 
                 if (isset($_POST['redirect']) && $_POST['redirect']) {
                     if (isset($_POST['thanhtoan']) && $_POST['thanhtoan'] == "Thanh toán khi nhận hàng") {
@@ -206,6 +210,7 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
                                     $soluong = $loadAll_cart[$i]['soluong'];
                                     $img = $loadAll_cart[$i]['img'];
                                     insert_chitietdonhang($iddh, $idsp, $name, $gia, $soluong, $img);
+                                    update_soluong_sanpham($idsp, $soluong);
                                     delete_cart($idcart);
                                 }
                             } else {

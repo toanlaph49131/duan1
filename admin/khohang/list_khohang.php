@@ -27,12 +27,15 @@
                             <td><?= $value['soluong']?></td>
                             <td>
                             <?php 
-                                if ($value['soluong'] < 10) {
+                                if ($value['soluong'] < 10 && $value['soluong'] >=1) {
                                     echo '<span style="color: red;">Sắp hết hàng</span>';
-                                } else {
+                                } elseif($value['soluong'] == 0) {
+                                    echo '<span style="color: blue;">Hết hàng</span>';
+                                }else {
                                     echo '<span style="color: green;">Đang còn</span>';
                                 }
                             ?>
+                            
                         </td>
                             <td><a href="index.php?act=update_khohang&id=<?= $value['id'] ?>">Update</a></td>
                         </tr>
