@@ -65,9 +65,11 @@ foreach ($loadbl_sp as $value) {
                 <p>Tình trạng kho:</p>
                 <p>
                     <?php
-                    if ($loadone_sp[0]['soluong'] < 10) {
+                    if ($loadone_sp[0]['soluong'] < 10 && $loadone_sp[0]['soluong'] >=1) {
                         echo '<span style="color: red;">Sắp hết hàng</span>';
-                    } else {
+                    } elseif($loadone_sp[0]['soluong'] ==0) {
+                        echo '<span style="color: blue;">Hết hàng</span>';
+                    }else {
                         echo '<span style="color: green;">Đang còn</span>';
                     }
                     ?>
