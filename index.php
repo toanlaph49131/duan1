@@ -210,6 +210,7 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
                                     $soluong = $loadAll_cart[$i]['soluong'];
                                     $img = $loadAll_cart[$i]['img'];
                                     insert_chitietdonhang($iddh, $idsp, $name, $gia, $soluong, $img);
+                                    update_soluong_sanpham($idsp, $soluong);
                                     delete_cart($idcart);
                                 }
                             } else {
@@ -429,4 +430,3 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
 }
 include 'view/footer.php';
 ob_end_flush();
-
