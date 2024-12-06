@@ -16,7 +16,7 @@
         <header>
             <div class="top">
                 <div class="logo">
-                    <a href="index.php"><img width="250" src="image/logg 1.png" alt="" /></a>
+                    <!-- <a href="index.php"><img width="250" src="image/logg 1.png" alt="" /></a> -->
 
                 </div>
                 <div class="input">

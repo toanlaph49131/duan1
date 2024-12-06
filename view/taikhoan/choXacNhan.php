@@ -86,7 +86,7 @@ $randomString = substr(str_shuffle($characters), 0, $length);
                     foreach ($choXacNhanh as $value) {
                         extract($value);
                         if ($trangthai === 1) {
-                            $trangthai = '<span style="background-color: #e74a3b;color: white; border-radius: 8px;padding: 0 5px">Chưa xác nhận</span>';
+                            $trangthai = '<span style="background-color: #e74a3b;color: white; border-radius: 8px;padding: 0 5px">Chờ xác nhận</span>';
                         } else if ($trangthai === 2) {
                             $trangthai = '<span style="background-color: #4e73df; color: white; border-radius: 8px;padding: 0 5px">Đã xác nhận</span>';
                         } else if ($trangthai === 3) {

@@ -266,6 +266,23 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                 include "./donhang/list_ctdh.php";
                 break;
             }
+            case "list_khohang":
+                $list_khohang = list_ton_kho();
+                include "./khohang/list_khohang.php";
+                break;
+            case "update_khohang":
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $loadone_sp = list_one_ton_kho($_GET['id']);
+                    if (isset($_POST['submit']) && ($_POST['submit'])) {
+                        $name = $_POST['name'];
+                        $soluong = $_POST['soluong'];
+    
+                        update_ton_kho($_GET['id'],$name,$soluong);
+                        header('location: index.php?act=list_khohang');
+                    }
+                }
+                include "./khohang/update_khohang.php";
+                break;
         case 'dangxuat':
             session_unset();
             header('location: ../index.php');

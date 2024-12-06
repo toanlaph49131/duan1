@@ -1,4 +1,4 @@
-```````````<?php
+<?php
 ob_start();
 session_start();
 include 'model/pdo.php';
@@ -429,4 +429,3 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
 }
 include 'view/footer.php';
 ob_end_flush();
-
