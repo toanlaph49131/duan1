@@ -18,7 +18,6 @@
 body {
   padding-top: 138px;
   font-family: "Nunito Sans", sans-serif;
-  background: rgba(203, 203, 203, 0.2);
 }
 body a {
   text-decoration: none;
@@ -1574,94 +1573,36 @@ footer .box-footer p:hover {
     opacity: 1;
   }
 }
-/* Tạo nền tổng thể */
-body {
-  font-family: "Arial", sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f3f4f6; /* Màu nền nhẹ nhàng */
+.box-qmk {
+  margin: 10px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
-
-/* Bao ngoài của form */
-.box-qmk {
-  background-color: #ffffff; /* Nền trắng */
-  padding: 20px;
-  border-radius: 10px; /* Bo góc */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Hiệu ứng nổi */
-  max-width: 400px;
-  width: 100%;
+.box-qmk form {
   text-align: center;
-  border: 1px solid #e0e0e0; /* Viền nhẹ */
+  width: 45%;
+  border: 1px solid gray;
+  height: 300px;
 }
-
-/* Tiêu đề form */
-.box-qmk h3 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  color: #333333; /* Màu chữ đậm */
-  font-weight: bold;
-  text-transform: uppercase;
+.box-qmk form h3 {
+  background: #2e2e2e;
+  color: white;
+  padding: 10px;
 }
-
-/* Input Email */
-.box-qmk input[type="text"] {
-  width: 100%;
-  padding: 12px 15px;
-  margin-bottom: 15px;
-  border: 1px solid #dcdcdc; /* Viền nhạt */
-  border-radius: 5px; /* Bo góc mềm mại */
-  font-size: 14px;
-  color: #555;
-  transition: border-color 0.3s ease;
-}
-
-/* Hiệu ứng khi focus vào input */
-.box-qmk input[type="text"]:focus {
-  border-color: #4caf50; /* Đổi màu viền khi focus */
-  outline: none;
-}
-
-/* Thông báo thành công hoặc lỗi */
-.box-qmk span {
-  font-size: 14px;
+.box-qmk form input {
+  margin-top: 10%;
+  padding-left: 5px;
+  height: 35px;
+  width: 90%;
+  border-radius: 5px;
+  border: 1px solid gray;
   margin-bottom: 10px;
-  display: block;
 }
-
-.box-qmk span.error {
-  color: red; /* Màu lỗi */
+.box-qmk form button{
+  padding: 5px 10px ;
+  margin: 10px;
 }
-
-.box-qmk span[style="color:green"] {
-  color: #4caf50; /* Màu thành công */
-}
-
-/* Nút gửi */
-.box-qmk button {
-  background-color: #4caf50; /* Màu xanh lá */
-  color: white; /* Chữ trắng */
-  border: none;
-  border-radius: 5px; /* Bo góc mềm mại */
-  padding: 12px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-/* Hiệu ứng hover và click cho nút */
-.box-qmk button:hover {
-  background-color: #45a049; /* Màu xanh đậm hơn */
-  transform: translateY(-2px); /* Hiệu ứng nhấn nổi */
-}
-
-.box-qmk button:active {
-  transform: translateY(0); /* Quay lại trạng thái bình thường khi click */
-}
-
 /* On smaller screens, decrease text size */
 @media only screen and (max-width: 300px) {
   .prev,
