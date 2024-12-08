@@ -2,7 +2,7 @@
     <table class="table-left">
         <thead>
             <tr>
-                <th>#</th>
+                <th>STT</th>
                 <th>Sản phẩm</th>
                 <th>Tên sản phẩm</th>
                 <th>Giá sản phẩm</th>
@@ -23,7 +23,7 @@
                     ?>
                     <tr>
                         <form action="?act=addtocart&idcart=<?= $idcart ?>" method="post">
-                            <td>  <input type="checkbox" name="selected_cart[]" value="<?= $idcart ?>"></td>
+                            <td>  <input type="text" name="selected_cart[]" value="<?= $idcart ?>" disabled></td>
                             <td><img width="60" src="uploads/img_sp/<?= $img ?>" alt=""></td>
                             <td> <a href="?act=ctsp&idsp=<?= $id ?>"><?= $name ?> </a></td>
                             <td>₫<?= number_format($gia_new) ?> </td>

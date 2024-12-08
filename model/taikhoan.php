@@ -11,9 +11,9 @@ function loadall_taikhoan($key = "", $idtk = 0)
     $sql .= " ORDER BY id desc";
     return pdo_query($sql);
 }
-function insert_taikhoan($user, $email, $pass)
+function insert_taikhoan($user, $email, $pass,$status)
 {
-    $sql = "INSERT INTO taikhoan(user,email,pass) values('$user','$email','$pass')";
+    $sql = "INSERT INTO taikhoan(user,email,pass,status) values('$user','$email','$pass', '$status')";
     pdo_execute($sql);
 }
 
@@ -47,11 +47,15 @@ function  update_taikhoan($id, $user, $email, $sdt, $address)
     pdo_execute($sql);
 }
 
-function update_role($id, $role)
+function update_role($id, $role, $status)
 {
-    $sql = "UPDATE taikhoan SET role='" . $role . "' WHERE id=" . $id;
+    // Thêm dấu nháy đơn cho chuỗi và đảm bảo ID là số
+    $sql = "UPDATE taikhoan SET role=$role, status='$status' WHERE id=" . $id;
+    
+    // Thực thi câu lệnh SQL
     pdo_execute($sql);
 }
+
 function checkuserlogin($user)
 {
     $sql = "SELECT * FROM taikhoan WHERE  user='" . $user . "'";

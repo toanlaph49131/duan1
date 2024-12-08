@@ -75,8 +75,7 @@ function load_sp_chua_danh_gia($iduser,$iddh)
     WHERE dh.id_user = '$iduser'
       AND dh.trangthai = 4
       AND dh.id = '$iddh'
-      AND bl.id IS NULL
-";
+      AND bl.id IS NULL";
     return pdo_query($sql);
 }
 

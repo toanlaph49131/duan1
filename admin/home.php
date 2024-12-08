@@ -15,7 +15,7 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Doanh thu</div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">
-                            <?= $thong_ke_doanh_thu['tong_thanhtien'] ? number_format($thong_ke_doanh_thu['tong_thanhtien'], 0, ',', '.') : '0'?> 
+                                <?= $thong_ke_doanh_thu['tong_thanhtien'] ? number_format($thong_ke_doanh_thu['tong_thanhtien'], 0, ',', '.') : '0' ?>
                                 ₫</div>
                         </div>
                         <div class="col-auto">
@@ -61,32 +61,67 @@
                         <!-- Card Body -->
                         <div class="card-body">
                             <div class="chart-area">
-                            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                                <script type="text/javascript">
-                                    google.charts.load("current", {
-                                        packages: ["corechart"]
-                                    });
-                                    google.charts.setOnLoadCallback(drawChart);
+                                <div class="container text-center">
+                                    <div class="row align-items-center">
+                                        <div class="col">
+                                            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+                                        </div>
+                                        <div class="col">
+                                            <div id="myPlot" style="width: 100%; height: 320px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <?php
+                                $dataPoints = [];
+                                foreach ($thong_ke_doanh_thu_thang as $row) {
+                                    $dataPoints[] = [
+                                        "label" => "Tháng " . $row['thang'], // Gắn nhãn theo tháng
+                                        "y" => $row['doanhthu'] // Doanh thu theo tháng
+                                    ];
+                                }                                   ?>
+                                <script>
+                                    window.onload = function() {
 
-                                    function drawChart() {
-                                        var data = google.visualization.arrayToDataTable([
-                                            ['Doanh thu', 'Tháng'],
-                                            <?php foreach ($thong_ke_doanh_thu_thang as $value) {
-                                                extract($value);
-                                                echo "['$thang', $doanhthu],";
-                                            } ?>
-                                        ]);
-
-                                        var options = {
-                                            title: 'Biểu đồ thống kê doanh thu theo tháng',
-                                            is3D: true,
-                                        };
-
-                                        var chart = new google.visualization.ColumnChart(document.getElementById('piechart_4d'));
-                                        chart.draw(data, options);
+                                        var chart = new CanvasJS.Chart("chartContainer", {
+                                            animationEnabled: true,
+                                            exportEnabled: true,
+                                            theme: "light1", // "light1", "light2", "dark1", "dark2"
+                                            title: {
+                                                text: "Thống kê doanh thu tháng"
+                                            },
+                                            axisY: {
+                                                includeZero: true
+                                            },
+                                            data: [{
+                                                type: "column",
+                                                dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>
+                                            }]
+                                        });
+                                        chart.render();
                                     }
                                 </script>
-                                <div id="piechart_4d" style="width: 100%; height: 350px;"></div>
+                                <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+                                <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+                                <script>
+                                    // Nhận dữ liệu từ PHP
+                                    const xArray = <?php echo $xArrayJson; ?>; // Tên trạng thái
+                                    const yArray = <?php echo $yArrayJson; ?>; // Phần trăm trạng thái
+
+                                    // Cấu hình biểu đồ Pie
+                                    const layout = {
+                                        title: "Tỷ lệ trạng thái đơn hàng"
+                                    };
+
+                                    const data = [{
+                                        labels: xArray, // Nhãn (Tên trạng thái)
+                                        values: yArray, // Giá trị (Phần trăm)
+                                        type: "pie"
+                                    }];
+
+                                    // Hiển thị biểu đồ
+                                    Plotly.newPlot("myPlot", data, layout);
+                                </script>
                             </div>
                         </div>
                     </div>

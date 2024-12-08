@@ -37,6 +37,10 @@
                 <div class="sidebar-brand-icon">
                     <img src="./img/logo_admin.png" alt="" width="120px">
                 </div>
+
+                <div class="sidebar-brand-text mx-3"><img width="100px" margin-top="10px" margin-bottom="100px" src="../image/z6111080494023_eb767ee1e4196534483bf539440f9f47-removebg-preview.png" alt=""></div>
+
+
             </a>
 
             <!-- Divider -->

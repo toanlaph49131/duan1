@@ -8,10 +8,15 @@ function loadAll_sanpham($key = "", $idsp = 0)
     if ($idsp > 0) {
         $sql .= " AND id = $idsp";
     }
-    $sql.= " ORDER BY id DESC";
+    $sql .= " ORDER BY id DESC";
+    
+    
     return pdo_query($sql);
 }
+
+function loadAll_sanpham_trang_thai_1()
 function loadAll_sanpham_trang_thai_0()
+
 {
     $sql = "SELECT * FROM sanpham WHERE trangthai = 0";
     return pdo_query($sql);

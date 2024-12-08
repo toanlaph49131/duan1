@@ -6,7 +6,13 @@ include 'model/sanpham.php';
 include 'model/danhmuc.php';
 include 'model/taikhoan.php';
 if (isset($_SESSION['iduser'])) {
-    $tk =  selectone_tk($_SESSION['iduser']);
+    $tk = selectone_tk($_SESSION['iduser']);
+    
+    if ($tk && $tk['status'] === 'deleted') {
+        session_destroy();
+        header("Location: ?act=deletedTk");
+        exit();
+    }
 }
 include 'view/header.php';
 include 'model/cart.php';
@@ -54,7 +60,6 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
                     $id = isset($_POST['id_sp' . $i]) ? $_POST['id_sp' . $i] : null;
                     $binhluan = $_POST['binhluan' . $i];
                     $rating = isset($_POST['star-rating' . $i]) ? $_POST['star-rating' . $i] : 5;
-
                     // Check if the comment is not empty before adding to the array
                     if (!empty($binhluan)) {
                         $mang[] = ['id' => $id, 'binhluan' => $binhluan, 'rating' => $rating];
@@ -273,7 +278,11 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
                 if (checkemail($email)) {
                     header('location:index.php?act=reset_pass');
                 }
+                else {
+                    echo "<script>alert('Email khong ton tai!')</script>";
+                }
             }
+            
             break;
         case 'reset_pass':
             if (isset($_COOKIE['email']) && isset($_POST['submit']) && $_POST['submit']) {
@@ -423,6 +432,9 @@ if (isset($_GET['act']) && $_GET['act'] != '') {
             }
             $daHuy = load_donhang_daHuy($_SESSION['iduser']);
             include 'view/taikhoan/daHuy.php';
+            break;
+        case 'deletedTk':
+            include 'view/taikhoan/deletedTk.php';
             break;
     }
 } else {
