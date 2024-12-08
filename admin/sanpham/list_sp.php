@@ -6,7 +6,7 @@
         </div>
         <div class="card-body">
             <a class="btn btn-success mb-3" href="?act=add_sp">Thêm mới</a>
-            </i>(<?=count($loadAll_sanpham_trang_thai_0)?>)
+            </i>(<?=count($loadAll_sanpham_trang_thai_1)?>)
             <div class="table-responsive">
                 <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                     <thead>
