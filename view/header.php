@@ -1,7 +1,6 @@
 <?php $list_dm = loadAll_danhmuc(); ?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,7 +15,14 @@
         <header>
             <div class="top">
                 <div class="logo">
+
                     <a href="index.php"><img width="65px" src="image/z6110145758447_00c2df47e0c5df5140e295ac83aed426-removebg-preview.png" alt="" /></a>
+
+
+                    <a href="index.php"><img width="65" src="https://hinhnen4k.com/wp-content/uploads/2023/02/gai-xinh-2k7-10-1.jpg" alt="" /></a>
+                    <a href="index.php"><img width="50" src="image/logo_client.png" alt="" /></a>
+
+
 
                 </div>
                 <div class="input">

@@ -15,8 +15,10 @@ function loadAll_sanpham($key = "", $idsp = 0)
 }
 
 function loadAll_sanpham_trang_thai_1()
+function loadAll_sanpham_trang_thai_0()
+
 {
-    $sql = "SELECT * FROM sanpham WHERE trangthai = 1";
+    $sql = "SELECT * FROM sanpham WHERE trangthai = 0";
     return pdo_query($sql);
 }
 function listsp_dm($key = "", $iddm = 0, $gia = "", $kieumay = "", $xuatxu = "")

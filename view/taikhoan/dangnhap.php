@@ -49,7 +49,9 @@ include "../../model/validate.php";
                         <small style="color: red;"> <?= (isset($err)) ?  $err . '<br>'  : '' ?></small>
 
                         <span>Bạn chưa có tài khoản? <a style="color: blue" href="dangky.php?act=dangky">Đăng ký</a></span>
+
                         <span style="margin-left: 80px;"><a href="../../index.php?act=quenmk">Quên mật khẩu</a></span>
+
                     </div>
                     <div class="with">
                         <div class="gg mt">

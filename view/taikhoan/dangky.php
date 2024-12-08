@@ -14,10 +14,11 @@ include "../../model/validate.php";
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
 </head>
 <style>
-     body{
+    body {
         padding-top: 0;
     }
 </style>
+
 <body>
 
 
