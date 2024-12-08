@@ -39,7 +39,7 @@
                             </select>
                         </td>
                         <td>
-                            <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn hủy đơn hàng?')">Hủy đơn hàng</button>
+                            <button type="submit" onclick="return confirm('Bạn có chắc chắn muốn hủy đơn hàng?')" style=" background-color: red; color: #fff; border-radius: 5px; padding: 5px" >Hủy đơn hàng</button>
                         </td>
                     </tr>
                 </form>

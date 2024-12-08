@@ -28,7 +28,7 @@
 							<span class="err" style='color:red; '><?= (isset($err['address'])) ? $err['address'] : '' ?></span>
 						</div>
 					</div>
-				</div>\
+				</div>
 				<div class="box-thanhtoan">
 					<h5 class=""><span class="">THANH TOÁN</span></h5>
 					<div class="box-thanhtoan-online">

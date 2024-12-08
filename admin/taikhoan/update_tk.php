@@ -67,6 +67,16 @@
                         Không được để trống.
                     </div>
                 </div>
+                <div class="col-md-6 mb-4">
+                    <label for="validationCustom04" class="form-label font-weight-bold">blacklist</label>
+                    <select class="custom-select" name="status">
+                        <option <?= $loadone_tk[0]['status'] == 'activity' ? "selected" : "" ?> value="activity">kích hoạt</option>
+                        <option <?= $loadone_tk[0]['status'] == 'block' ? "selected" : "" ?> value="block">khoá</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        Không được để trống.
+                    </div>
+                </div>
                 <div class="col-12 mb-4">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>

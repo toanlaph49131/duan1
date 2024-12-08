@@ -46,11 +46,29 @@ function thong_ke_doanh_thu_thanh(){
 FROM
     donhang dh
 WHERE
-    dh.trangthai = 3
+    dh.trangthai = 4
 GROUP BY
     thang
 ORDER BY
  thang;
+    ";
+    return pdo_query($sql);
+}
+
+function thong_ke_trang_thai() {
+    $sql = "
+    SELECT 
+        s.name_status AS ten_trang_thai, 
+        COUNT(d.id) AS so_luong,
+        ROUND(COUNT(d.id) * 100 / (SELECT COUNT(*) FROM donhang), 2) AS phan_tram
+    FROM 
+        donhang d
+    JOIN 
+        status s ON d.trangthai = s.id
+    GROUP BY 
+        d.trangthai, s.name_status
+    ORDER BY 
+        so_luong DESC
     ";
     return pdo_query($sql);
 }

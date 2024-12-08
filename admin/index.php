@@ -15,6 +15,17 @@ $thong_ke = thong_ke();
 $count_sp = count(loadAll_sanpham());
 $thong_ke_doanh_thu_thang = thong_ke_doanh_thu_thanh();
 $loadAll_sanpham_trang_thai_1 = loadAll_sanpham_trang_thai_1();
+$thong_ke_trang_thai = thong_ke_trang_thai();
+$xArray = [];
+$yArray = [];
+foreach ($thong_ke_trang_thai as $row) {
+    $xArray[] = $row['ten_trang_thai']; // Tên trạng thái
+    $yArray[] = $row['phan_tram'];      // Phần trăm
+}
+
+// Encode dữ liệu sang JSON để truyền sang JavaScript
+$xArrayJson = json_encode($xArray, JSON_UNESCAPED_UNICODE);
+$yArrayJson = json_encode($yArray, JSON_NUMERIC_CHECK);
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
@@ -204,7 +215,8 @@ if (isset($_GET['act']) && ($_GET['act'] != "")) {
                     $loadone_tk = loadall_taikhoan("", $_GET['id']);
                     if (isset($_POST['submit']) && ($_POST['submit'])) {
                         $role = $_POST['role'];
-                        update_role($_GET['id'], $role);
+                        $status = $_POST['status'];
+                        update_role($_GET['id'], $role,$status);
                         header('location: index.php?act=list_tk');
                     }
                 }

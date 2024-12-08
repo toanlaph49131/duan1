@@ -37,7 +37,7 @@
                 <div class="sidebar-brand-icon">
                     <!-- <i class="fa-solid fa-user-secret"></i> -->
                 </div>
-                <div class="sidebar-brand-text mx-3"><img width="150" src="../image/logg 1.png" alt=""></div>
+                <div class="sidebar-brand-text mx-3"><img width="100px" margin-top="10px" margin-bottom="100px" src="../image/z6111080494023_eb767ee1e4196534483bf539440f9f47-removebg-preview.png" alt=""></div>
             </a>
 
             <!-- Divider -->

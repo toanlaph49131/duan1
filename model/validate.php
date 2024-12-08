@@ -4,7 +4,6 @@ function validate($user, $pass, $email, $confirmPass)
 {
     $checkuser = checkuserlogin($user);
     $checkemail = checkemail($email);
-
     $error = [];
     // Validate user
     if (empty($user)) {
@@ -16,8 +15,6 @@ function validate($user, $pass, $email, $confirmPass)
     } elseif ($_GET['act'] == 'dangky' && $checkuser == true) {
         $error["user"] = "Tên đã tồn tại!";
     }
-
-
     // Validate pass
     if (empty($pass)) {
         $error["pass"] = "Mật khẩu không được để trống!";
@@ -54,8 +51,6 @@ if (isset($_POST['btn']) && $_POST['btn']) {
     }
     $pass = $_POST['pass'];
     $user = $_POST['user'];
-
-
     $error = validate($user, $pass, $email, $confirmPass);
 
     if (empty($error)) {
@@ -79,7 +74,7 @@ if (isset($_POST['btn']) && $_POST['btn']) {
                 }
             }
         } elseif ($_GET['act'] == 'dangky') {
-            insert_taikhoan($user, $email, md5($pass), 0);
+            insert_taikhoan($user, $email, md5($pass),'activity', 0);
             header('Location: dangnhap.php?act=dangnhap');
         }
     }
