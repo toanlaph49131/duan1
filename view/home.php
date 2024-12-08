@@ -30,9 +30,9 @@
 <aside>
     <div class="right-now">
         <img width="1360" height="500" src="image/banner-nho.jpg" alt="" />
-        
+
     </div>
-    
+
 </aside>
 <main>
     <div class="box-product">
@@ -45,7 +45,7 @@
                 extract($value); ?>
 
                 <div class="item">
-                    <a href="?act=ctsp&idsp=<?= $id ?>&iddm=<?=$iddm?>">
+                    <a href="?act=ctsp&idsp=<?= $id ?>&iddm=<?= $iddm ?>">
                         <div class="img">
                             <img src="uploads/img_sp/<?= $img ?>" alt="" />
                         </div>
@@ -80,7 +80,7 @@
                 extract($value); ?>
 
                 <div class="item">
-                    <a href="?act=ctsp&idsp=<?= $id ?>&iddm=<?=$iddm?>">
+                    <a href="?act=ctsp&idsp=<?= $id ?>&iddm=<?= $iddm ?>">
                         <div class="img">
                             <img src="uploads/img_sp/<?= $img ?>" alt="" />
                         </div>
@@ -92,7 +92,7 @@
                     </div>
                     <div class="Evaluate">
                         <p>
-                        <i class="fa-solid fa-star"></i> <span>(<?= number_format($avg_star, 1) ?>)</span> <br />
+                            <i class="fa-solid fa-star"></i> <span>(<?= number_format($avg_star, 1) ?>)</span> <br />
                             <!-- <span>Đã mua 4.5k</span> -->
                         </p>
 
