@@ -15,7 +15,6 @@ function loadAll_sanpham($key = "", $idsp = 0)
 }
 
 function loadAll_sanpham_trang_thai_1()
-function loadAll_sanpham_trang_thai_0()
 
 {
     $sql = "SELECT * FROM sanpham WHERE trangthai = 0";

@@ -8,7 +8,7 @@ include 'model/taikhoan.php';
 if (isset($_SESSION['iduser'])) {
     $tk = selectone_tk($_SESSION['iduser']);
     
-    if ($tk && $tk['status'] === 'deleted') {
+    if ($tk && $tk['status'] === 'blocked') {
         session_destroy();
         header("Location: ?act=deletedTk");
         exit();

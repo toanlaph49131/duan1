@@ -27,9 +27,6 @@ foreach ($thong_ke_trang_thai as $row) {
 // Encode dữ liệu sang JSON để truyền sang JavaScript
 $xArrayJson = json_encode($xArray, JSON_UNESCAPED_UNICODE);
 $yArrayJson = json_encode($yArray, JSON_NUMERIC_CHECK);
-
-$loadAll_sanpham_trang_thai_0 = loadAll_sanpham_trang_thai_0();
-
 if (isset($_GET['act']) && ($_GET['act'] != "")) {
     $act = $_GET['act'];
     switch ($act) {
